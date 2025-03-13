@@ -1,9 +1,9 @@
 import express from 'express'
-import { getSearches, addSearch } from '../controllers/searcheController.js'
+import { topSearches, addSearch } from '../controllers/searcheController.js'
 
 const router = express.Router()
 
-router.get('/', getSearches)
+router.get('/top', topSearches)
 
 router.post('/', addSearch)
 

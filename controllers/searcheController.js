@@ -1,13 +1,14 @@
 import Search from '../models/searchModel.js'
 
-export const getSearches = async (req, res) => {
-  try {
-    const cars = await Search.find({})
-    res.status(200).json(cars)
-  } catch (err) {
-    return res.status(500).send('Error fetching searches')
-  }
-}
+// export const getSearches = async (req, res) => {
+//   try {
+//     const searches = await Search.find({})
+//     res.status(200).json(searches)
+//   } catch (err) {
+//     console.error('Error fetching searches:', err)
+//     res.status(500).json({ message: 'Failed to fetch searches', error: err.message })
+//   }
+// }
 
 export const addSearch = async (req, res) => {
   try {
@@ -17,14 +18,27 @@ export const addSearch = async (req, res) => {
       return res.status(400).json({ message: 'City is required' })
     }
 
-    const newSearch = new Search({ selectedCity })
-    await newSearch.save()
-    //const savedSearch = await newSearch.save()
+    // Find the city in the database or create a new entry
+    const search = await Search.findOneAndUpdate(
+      { selectedCity },
+      { $inc: { views: 1 } },
+      { upsert: true, new: true },
+    )
 
-    // res.status(201).json(savedSearch) // Sends back the saved search
-
-    res.status(201).json({ message: 'Search saved successfully', search: newSearch })
+    res.status(201).json({ message: 'Search saved successfully', search: search })
   } catch (err) {
     res.status(500).json({ message: 'Error saving search', error: err.message })
+  }
+}
+
+export const topSearches = async (req, res) => {
+  try {
+    const topCities = await Search.find({})
+      .sort({ views: -1 }) // sort by views in descending order
+      .limit(3) // limit to 3 results
+
+    res.status(200).json(topCities)
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching top cities', error: err.message })
   }
 }
