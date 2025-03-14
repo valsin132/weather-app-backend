@@ -13,14 +13,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')));
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('<h1>Welcome to the WeatherApp API</h1>');
-});
 
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
 
 app.use('/api/search', searchRoutes);
 
