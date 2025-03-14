@@ -17,6 +17,11 @@ app.get('/', (req, res) => {
   res.send('<h1>Welcome to the WeatherApp API</h1>');
 });
 
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
+
 app.use('/search', searchRoutes);
 
 connectToDb()
