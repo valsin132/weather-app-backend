@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/search', searchRoutes);
+app.use('/api/search', searchRoutes);
 
 connectToDb()
   .then(() => {
