@@ -1,10 +1,10 @@
-import express from 'express'
-import { topSearches, addSearch } from '../controllers/searcheController.js'
+import express from 'express';
+import { topSearches, addSearch } from '../controllers/searcheController.js';
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/top', topSearches)
+router.get('/top', topSearches);
 
-router.post('/', addSearch)
+router.post('/', addSearch);
 
-export default router
+export default router;
