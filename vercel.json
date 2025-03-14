@@ -1,3 +1,3 @@
 {
-  "rewrites": [{ "source": "/search/:path*", "destination": "/api/search/:path*" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
