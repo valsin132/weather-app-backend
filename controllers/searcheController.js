@@ -23,7 +23,7 @@ export const addSearch = async (req, res) => {
 
 export const topSearches = async (req, res) => {
   try {
-    const topCities = await Search.find({})
+    const topCities = await Search.find()
       .sort({ views: -1 }) // sort by views in descending order
       .limit(3); // limit to 3 results
 
