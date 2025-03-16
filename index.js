@@ -24,10 +24,11 @@ app.use(
 
 app.use('/api/search', searchRoutes);
 
-connectToDb()
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((err) => {
-    console.error('Failed to connect to the database', err);
-  });
+// connectToDb()
+//   .then(() => {
+//     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//   })
+//   .catch((err) => {
+//     console.error('Failed to connect to the database', err);
+//   });
+await connectToDb();
