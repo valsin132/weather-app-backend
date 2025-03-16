@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { connectToDb, PORT } from './db.js';
 import searchRoutes from './routes/searchRoutes.js';
 import { fileURLToPath } from 'url';
