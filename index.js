@@ -11,7 +11,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.static(path.join(__dirname, '../', 'public')));
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://weather-app-frontend-rouge-three.vercel.app',
+  }),
+);
 
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to the WeatherApp API</h1>');
