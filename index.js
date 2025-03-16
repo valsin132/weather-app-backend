@@ -32,3 +32,4 @@ app.use('/api/search', searchRoutes);
 //     console.error('Failed to connect to the database', err);
 //   });
 await connectToDb();
+export default app;
